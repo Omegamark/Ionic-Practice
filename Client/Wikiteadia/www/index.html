@@ -74,14 +74,15 @@
           <h1 class="title">Projects</h1>
           <button class="button button-icon ion-plus"
           ng-click="newProject()">
+
           </button>
         </ion-header-bar>
         <ion-content scroll="false">
           <ion-list>
             <ion-item
             ng-repeat="project in projects"
-            ng-click="selectProject(project, $index)"
-            ng-class="{active: activeProject == project}">
+            ng-click="selectProject(project, $index)">
+            <!-- Don't understand this activeProject == project, deleted it and it doesn't change anything -->
             {{project.title}}
             </ion-item>
           </ion-list>
@@ -115,6 +116,35 @@
             </ion-content>
           </div>
         </script>
+
+        <!-- Making a project Modal -->
+
+        <script id="new-project.html" type="text/ng-template">
+          <div class="modal">
+            <!-- Modal Header Bar -->
+            <ion-header-bar class="bar-secondary">
+              <h1 class="title">New Project</h1>
+              <button class="button button-clear button-positive"
+              ng-click="closeNewProject()">Cancel</button>
+            </ion-header-bar>
+              <!-- Modal Content Area -->
+              <ion-content>
+                <form
+                ng-submit="createProject(project)">
+                  <div class="list">
+                    <label class="item item-input">
+                      <input type="text" placeholder="What do you need to do?"
+                      ng-model="task.title">
+                    </label>
+                  </div>
+                  <div class="padding">
+                    <button type="submit" class="button button-block button-positive">Create Task</button>
+                  </div>
+                </form>
+
+              </ion-content>
+            </div>
+          </script>
 
 
 

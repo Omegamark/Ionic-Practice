@@ -45,11 +45,12 @@ angular.module('starter.controllers', [])
 
   // Called to create a new project ****** Try to make this into a Modal as opposed to a "prompt"!!!!!!!!!!
   $scope.newProject = function () {
-    var projectTitle = prompt('Project name');
-    if(projectTitle) {
-      createProject(projectTitle);
-    }
-
+    console.log('clicked');
+    $scope.projectModal.show();
+    // var projectTitle = prompt('Project name');
+    // if(projectTitle) {
+    //   createProject(projectTitle);
+    // }
   };
 
   // called to select the given project
@@ -66,12 +67,28 @@ angular.module('starter.controllers', [])
   }, {
     scope: $scope
   });
+
+  $ionicModal.fromTemplateUrl('new-project.html', function(modal) {
+    $scope.projectModal = modal;
+
+  }, {
+    scope: $scope
+  });
+
   $scope.createTask = function(task) {
     if(!$scope.activeProject || !task) {
       return;
     }
+//Creating another modal for projects
+// $scope.newProject = function() {
+//   console.log('clicked');
+//   $scope.projectModal.show();
+// }
 
 
+
+
+//Creating a second modal
   $scope.activeProject.tasks.push({
     title: task.title
   });
@@ -88,7 +105,7 @@ $scope.newTask = function() {
 };
 
 $scope.closeNewTask = function() {
-  $scope.taskModal.show();
+  $scope.taskModal.hide();
 };
 
 $scope.toggleProjects = function () {
